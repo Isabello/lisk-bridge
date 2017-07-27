@@ -4,9 +4,9 @@ module.exports = function (grunt) {
 
     // Load NPM Tasks
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-markdown');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('gruntify-eslint');
 
     // Load Custom Tasks
     grunt.loadTasks('tasks');
