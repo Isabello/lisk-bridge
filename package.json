@@ -2,10 +2,19 @@
   "name": "lisk-bridge",
   "version": "0.1.0",
   "dependencies": {
-    "pg": "=7.0.2"
+    "pg": "=7.0.2",
+    "commander": "=2.9.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/grunt travis --verbose",
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-markdown": "^0.7.0",
+    "grunt-mocha-test": "=0.13.2",
     "load-grunt-tasks": "~0.2.0",
     "chai": "^4.1.0",
     "mocha": "^3.4.2"
