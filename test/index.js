@@ -1,23 +1,22 @@
-'use strict'; /*jslint mocha:true, expr:true */
+/* jslint mocha:true, expr:true */
 
 // Requires
-var node = require('./node.js');
+const node = require('./node.js');
 
 
-describe('Connectivity Testing', function () {
+describe('Connectivity Testing', () => {
+	// Describe function for DB query
+	function queryDatabase(query) {
+		node.dbQuery(query);
+	}
 
-  // Describe function for DB query
-  function queryDatabase(query, done) {
-    node.dbQuery(query)
-  }
-
-  describe('Check Postgres', function() {
-    it('using known query should be ok', function(done) {
-      var query = 'SELECT count(1) from blocks';
-      queryDatabase(query, function(err, res) {
-        node.expect(res.rows[0].count).to.be.a.number;
-      });
-      done();
-    });
-  });
+	describe('Check Postgres', () => {
+		it('using known query should be ok', (done) => {
+			const queryBlocks = 'SELECT count(1) from blocks';
+			queryDatabase(queryBlocks, (err, res) => {
+				node.expect(res.rows[0].count).to.be.a.number;
+			});
+			done();
+		});
+	});
 });

@@ -6,7 +6,8 @@
     "commander": "=2.9.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/grunt test --verbose"
+    "test": "./node_modules/.bin/grunt test --verbose",
+    "lint-fix": "./node_modules/.bin/grunt eslint-fix --verbose"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "=11.2.0",
