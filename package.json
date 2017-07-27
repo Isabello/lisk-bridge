@@ -6,7 +6,7 @@
     "commander": "=2.9.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/grunt travis --verbose",
+    "test": "./node_modules/.bin/grunt travis --verbose"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
