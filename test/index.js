@@ -13,9 +13,10 @@ describe('Connectivity Testing', function () {
 
   describe('Check Postgres', function() {
     it('using known query should be ok', function(done) {
+      var query = 'SELECT count(1) from blocks';
       queryDatabase(query, function(err, res) {
         node.expect(res.rows[0].count).to.be.a.number;
-      }
+      });
       done();
     });
   });

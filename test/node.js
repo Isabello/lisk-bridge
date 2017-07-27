@@ -10,7 +10,7 @@ node.chai = require('chai');
 
 const { Client } = node.pg;
 
-const node.client = new Client({
+node.client = new Client({
   user: '',
   host: 'localhost',
   database: 'lisk_main',
@@ -22,8 +22,8 @@ const node.client = new Client({
 node.dbQuery = function dbQuery(query) {
   node.client.query(query, (err, res) => {
     console.log(err ? err.stack : res.rows[0].count) // Returned count
-  })
-  return res.rows[0].count;
+    return res;
+  });
 }
 
 // Exports
