@@ -1,0 +1,13 @@
+{
+  "name": "lisk-bridge",
+  "version": "0.1.0",
+  "dependencies": {
+    "pg": "=7.0.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "load-grunt-tasks": "~0.2.0",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2"
+  }
+}
