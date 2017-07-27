@@ -26,13 +26,8 @@ module.exports = function (grunt) {
                 }
             },
         },
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            all: ['index.js',
-                  'Gruntfile.js',
-                  'test/**/*.js']
+        eslint: {
+          target: ['test/**', '!test/mocha.opts', 'Gruntfile.js', 'index.js']
         },
         mochaTest: {
             test: {
@@ -61,5 +56,5 @@ module.exports = function (grunt) {
     });
 
     // Register tasks for travis.
-    grunt.registerTask('test', ['jshint', 'mochaTest']);
+    grunt.registerTask('test', ['eslint', 'mochaTest']);
 };
