@@ -19,6 +19,8 @@ describe('Connectivity Testing', () => {
 	}
 
 	describe('Check Postgres', () => {
+		node.client.connect();
+
 		it('using pg_database table should be ok', (done) => {
 			queryDatabase(queryPgDatabase, [node.client.database], (err, res) => {
 				node.expect(res.rows[0].count).to.equal(1);
