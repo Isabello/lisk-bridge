@@ -41,7 +41,7 @@ node.get = function getRequest(path, done) {
 node.dbQuery = function dbQuery(query, params, done) {
 	return node.db.query(query, params, (err, res) => {
 		if (err) {
-			done(err, res);
+			return done(err, res);
 		}
 		return done(null, res);
 	});
