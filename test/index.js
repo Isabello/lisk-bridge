@@ -9,8 +9,8 @@ const queryPgDatabase = 'select count(datname) from pg_database where datname = 
 
 describe('Connectivity Testing', () => {
 	// Describe function for DB query
-	function queryDatabase(query, params) {
-		node.dbQuery(query, params);
+	function queryDatabase(query, params, done) {
+		node.dbQuery(query, params, done);
 	}
 
 	// Describe function for querying Lisk app node
@@ -32,6 +32,7 @@ describe('Connectivity Testing', () => {
 				done();
 			});
 		});
+		node.client.end();
 	});
 
 	describe('Check Lisk', () => {

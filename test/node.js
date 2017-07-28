@@ -49,8 +49,9 @@ node.client = new Client({
 });
 
 // Executes database query with passed query
-node.dbQuery = function dbQuery(query, params) {
-	node.client.query(query, params, (err, res) => res);
+node.dbQuery = function dbQuery(query, params, done) {
+	node.client.connect();
+	node.client.query(query, params, (err, res) => done(err, res));
 };
 
 // Exports
