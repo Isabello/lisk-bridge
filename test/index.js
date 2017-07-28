@@ -38,6 +38,7 @@ describe('Connectivity Testing', () => {
 		it('using api/loader should be ok', (done) => {
 			getNodeStatus(done, (err, res) => {
 				node.expect(res.body).to.have.property('success').to.be.ok;
+        node.expect(res.body).to.have.property('height').to.be.a.number;        
 			});
 			done();
 		});
