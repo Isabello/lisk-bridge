@@ -22,25 +22,25 @@ describe('Connectivity Testing', () => {
 		it('using pg_database table should be ok', (done) => {
 			queryDatabase(queryPgDatabase, node.client.database, (err, res) => {
 				node.expect(res.rows[0].count).to.equal(1);
+        done();
 			});
-			done();
 		});
 
 		it('using count query against blocks should be ok', (done) => {
 			queryDatabase(queryBlocks, '', (err, res) => {
 				node.expect(res.rows[0].count).to.be.a.number;
+    		done();
 			});
-			done();
 		});
 	});
 
 	describe('Check Lisk', () => {
 		it('using api/loader should be ok', (done) => {
-			getNodeStatus(done, (err, res) => {
+			getNodeStatus((err, res) => {
 				node.expect(res.body).to.have.property('success').to.be.ok;
-        node.expect(res.body).to.have.property('height').to.be.a.number;        
+        node.expect(res.body).to.have.property('height').to.be.a.number;
+        done();
 			});
-			done();
 		});
 	});
 });
