@@ -2,7 +2,7 @@
 const node = {};
 
 // Requires
-node.pg = require('pg');
+node.db = require('../db/index.js');
 node.expect = require('chai').expect;
 node.chai = require('chai');
 node.supertest = require('supertest');
@@ -37,27 +37,15 @@ node.get = function getRequest(path, done) {
 	return abstractRequest({ verb: 'GET', path, params: null }, done);
 };
 
-// Postgres configuration
-const { Client } = node.pg;
-
-node.client = new Client({
-	user: '',
-	host: 'localhost',
-	database: 'lisk_main',
-	password: 'password',
-	port: 5432,
-});
-
 // Executes database query with passed query
-node.dbQuery = function dbQuery(query, params, done) {
-	// Connect to DB
-	node.client.connect();
-
-	node.client.query(query, params, (err, res) => {
-		node.client.end();
-		done(err, res);
+node.dbQuery = function dbQuery(query, params) {
+	node.db.query(query, params, (err, res) => {
+		if (err) {
+			console.warn(err);
+		}
+		console.warn(res.rows[0].count);
+		return res;
 	});
 };
-
 // Exports
 module.exports = node;
