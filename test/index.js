@@ -13,6 +13,11 @@ describe('Connectivity Testing', () => {
 		node.dbQuery(query, params);
 	}
 
+  // Describe function for querying Lisk app node
+  function getNodeStatus(done) {
+    node.get('/api/loader/status/sync', done);
+  }
+
 	describe('Check Postgres', () => {
 
 		it('using pg_database table should be ok', (done) => {
@@ -23,11 +28,20 @@ describe('Connectivity Testing', () => {
 		});
 
     it('using count query against blocks should be ok', (done) => {
-      const queryBlocks = 'SELECT count(1) from blocks';
-      queryDatabase(queryBlocks, [], (err, res) => {
+      queryDatabase(queryBlocks, '', (err, res) => {
         node.expect(res.rows[0].count).to.be.a.number;
       });
       done();
     });
 	});
+
+  describe('Check Lisk', () => {
+    it('using api/loader should be ok'), (done) => {
+      getNodeStatus(done, function(err,res) {
+        node.expect(res.body).to.have.property('success').to.be.ok;
+      });
+      done();
+    });
+
+  });
 });

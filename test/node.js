@@ -5,7 +5,40 @@ const node = {};
 node.pg = require('pg');
 node.expect = require('chai').expect;
 node.chai = require('chai');
+node.supertest = require('supertest');
 
+// http configuration
+node.baseUrl = 'http://localhost:8000'; //Make me abstract bitte
+node.api = node.supertest(node.baseUrl);
+
+
+// Configures supertest for querying Lisk
+function abstractRequest (options, done) {
+	var request = node.api[options.verb.toLowerCase()](options.path);
+
+	request.set('Accept', 'application/json');
+	request.expect('Content-Type', /json/);
+	request.expect(200);
+
+	if (options.params) {
+		request.send(options.params);
+	}
+
+	if (done) {
+		request.end(function (err, res) {
+			done(err, res);
+		});
+	} else {
+		return request;
+	}
+}
+
+// Get the given path
+node.get = function (path, done) {
+	return abstractRequest({ verb: 'GET', path: path, params: null }, done);
+};
+
+// Postgres configuration
 const { Client } = node.pg;
 
 node.client = new Client({
