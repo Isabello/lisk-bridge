@@ -41,13 +41,12 @@ node.get = function getRequest(path, done) {
 node.dbQuery = function dbQuery(query, params, done) {
 	return node.db.query(query, params, (err, res) => {
 		if (err) {
-			done(err);
+			done(err, res);
 		} else {
-			console.warn('returning: ' + query)
-			return query;
+			console.warn('returning: ' + res)
+			return res;
 		}
 	});
-
 };
 
 // Exports
