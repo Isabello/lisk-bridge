@@ -38,14 +38,15 @@ node.get = function getRequest(path, done) {
 };
 
 // Executes database query with passed query
-node.dbQuery = function dbQuery(query, params) {
-	node.db.query(query, params, (err, res) => {
+node.dbQuery = function dbQuery(query, params, done) {
+	var query = node.db.query(query, params, (err, res) => {
 		if (err) {
-			console.warn(err);
+			done(err);
 		}
-		console.warn(res.rows[0].count);
-		return res;
 	});
+	console.warn('returning: ' + query)
+	return query;
 };
+
 // Exports
 module.exports = node;
