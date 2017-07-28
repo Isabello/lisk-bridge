@@ -42,9 +42,8 @@ node.dbQuery = function dbQuery(query, params, done) {
 	return node.db.query(query, params, (err, res) => {
 		if (err) {
 			done(err, res);
-		} else {
-			return done(null, res);
 		}
+		return done(null, res);
 	});
 };
 

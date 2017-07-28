@@ -8,7 +8,6 @@ const queryBlocks = 'SELECT count(1) from blocks';
 const queryPgDatabase = 'select count(datname) from pg_database where datname = $1';
 
 describe('Connectivity Testing', () => {
-
 	// Describe function for querying Lisk app node
 	function getNodeStatus(done) {
 		node.get('/api/loader/status/sync', done);
