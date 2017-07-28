@@ -3,7 +3,6 @@
 // Requires
 const node = require('./node.js');
 
-
 describe('Connectivity Testing', () => {
 	// Describe function for DB query
 	function queryDatabase(query) {

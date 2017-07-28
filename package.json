@@ -10,17 +10,17 @@
     "lint-fix": "./node_modules/.bin/grunt eslint-fix --verbose"
   },
   "devDependencies": {
+    "chai": "^4.1.0",
     "eslint-config-airbnb-base": "=11.2.0",
     "eslint-config-lisk-base": "^0.1.0",
     "eslint-plugin-import": "=2.2.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
-    "gruntify-eslint": "=4.0.0",
     "grunt-markdown": "^0.7.0",
     "grunt-mocha-test": "=0.13.2",
+    "gruntify-eslint": "=4.0.0",
     "load-grunt-tasks": "~0.2.0",
-    "chai": "^4.1.0",
     "mocha": "^3.4.2"
   }
 }
