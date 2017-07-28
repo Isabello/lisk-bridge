@@ -2,6 +2,7 @@ const db = require('./db/index.js');
 const AppConfig = require('./helpers/config.js');
 
 // Initalizes paths
+AppConfig.config();
 
 // Setup GC
 if (typeof gc !== 'undefined') {
