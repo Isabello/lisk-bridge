@@ -8,13 +8,13 @@ node.chai = require('chai');
 node.supertest = require('supertest');
 
 // http configuration
-node.baseUrl = 'http://localhost:8000'; //Make me abstract bitte
+node.baseUrl = 'http://localhost:8000'; // Make me abstract bitte
 node.api = node.supertest(node.baseUrl);
 
 
 // Configures supertest for querying Lisk
-function abstractRequest (options, done) {
-	var request = node.api[options.verb.toLowerCase()](options.path);
+function abstractRequest(options, done) {
+	const request = node.api[options.verb.toLowerCase()](options.path);
 
 	request.set('Accept', 'application/json');
 	request.expect('Content-Type', /json/);
@@ -25,17 +25,16 @@ function abstractRequest (options, done) {
 	}
 
 	if (done) {
-		request.end(function (err, res) {
+		request.end((err, res) => {
 			done(err, res);
 		});
-	} else {
-		return request;
 	}
+	return request;
 }
 
 // Get the given path
-node.get = function (path, done) {
-	return abstractRequest({ verb: 'GET', path: path, params: null }, done);
+node.get = function getRequest(path, done) {
+	return abstractRequest({ verb: 'GET', path, params: null }, done);
 };
 
 // Postgres configuration
