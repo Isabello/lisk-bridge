@@ -13,7 +13,7 @@ describe('Connectivity Testing', () => {
 	function getNodeStatus(done) {
 		node.get('/api/loader/status/sync', done);
 	}
-/*
+
 	describe('Check Postgres', () => {
 		it('using pg_database table should be ok', (done) => {
 			node.dbQuery(queryPgDatabase, ['lisk_main'], (err, res) => {
@@ -29,15 +29,14 @@ describe('Connectivity Testing', () => {
 			});
 		});
 	});
-*/
+
 	describe('Check Lisk', () => {
 		it('using api/loader should be ok', (done) => {
 			getNodeStatus((err, res) => {
 				node.expect(res.body).to.have.property('success').to.be.ok;
-				node.expect(res.body).to.have.property('height').to.be.a.number;
+				node.expect(res.body.height).to.be.above(1);
 				done();
 			});
-
 		});
 	});
 });

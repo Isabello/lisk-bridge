@@ -39,13 +39,15 @@ node.get = function getRequest(path, done) {
 
 // Executes database query with passed query
 node.dbQuery = function dbQuery(query, params, done) {
-	var query = node.db.query(query, params, (err, res) => {
+	return node.db.query(query, params, (err, res) => {
 		if (err) {
 			done(err);
+		} else {
+			console.warn('returning: ' + query)
+			return query;
 		}
 	});
-	console.warn('returning: ' + query)
-	return query;
+
 };
 
 // Exports
