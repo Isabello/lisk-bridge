@@ -48,12 +48,15 @@ node.client = new Client({
 	port: 5432,
 });
 
-// Connect to DB
-node.client.connect();
-
 // Executes database query with passed query
 node.dbQuery = function dbQuery(query, params, done) {
-	node.client.query(query, params, (err, res) => done(err, res));
+	// Connect to DB
+	node.client.connect();
+	
+	node.client.query(query, params, (err, res) => {
+		client.end()
+		done(err, res);
+	});
 };
 
 // Exports
