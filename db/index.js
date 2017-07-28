@@ -9,17 +9,17 @@ const pool = new Pool({
 });
 
 module.exports = {
-  query: (text, params, callback) {
-    const start = Date.now()
+  query: (text, params, callback) => {
+    const start = Date.now();
     return pool.query(text, params, (err, res) => {
-      const duration = Date.now() - start
-      console.log('executed query', { text, duration, rows: res.rowCount })
-      callback(err, res)
+      const duration = Date.now() - start;
+      console.log('executed query', { text, duration, rows: res.rowCount });
+      return callback(err, res);
     })
   },
-  getClient: (callback) {
+  getClient: (callback) => {
     pool.connect((err, client, done) => {
-      const query = client.query.bind(client)
+      const query = client.query.bind(client);
 
       // monkey patch the query method to keep track of the last query executed
       client.query = () => {

@@ -52,9 +52,9 @@ node.client = new Client({
 node.dbQuery = function dbQuery(query, params, done) {
 	// Connect to DB
 	node.client.connect();
-	
+
 	node.client.query(query, params, (err, res) => {
-		client.end()
+		node.client.end();
 		done(err, res);
 	});
 };
