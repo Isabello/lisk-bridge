@@ -20,14 +20,14 @@ describe('Connectivity Testing', () => {
 
 	describe('Check Postgres', () => {
 		it('using pg_database table should be ok', (done) => {
-			queryDatabase(queryPgDatabase, node.client.database, (err, res) => {
+			queryDatabase(queryPgDatabase, [node.client.database], (err, res) => {
 				node.expect(res.rows[0].count).to.equal(1);
 				done();
 			});
 		});
 
 		it('using count query against blocks should be ok', (done) => {
-			queryDatabase(queryBlocks, '', (err, res) => {
+			queryDatabase(queryBlocks, [], (err, res) => {
 				node.expect(res.rows[0].count).to.be.a.number;
 				done();
 			});

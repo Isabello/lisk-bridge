@@ -12,10 +12,11 @@ client.connect();
 
 // Defines count query
 const queryBlocks = 'SELECT count(1) from blocks';
+const queryPgDatabase = 'select count(datname) from pg_database where datname = $1';
 
 // Executes database query with passed query
-function dbQuery(query) {
-	client.query(query, (err, res) => {
+function dbQuery(query, params) {
+	client.query(query, params, (err, res) => {
 		// console.log(err ? err.stack : res.rows[0].count); // Returned count
 		console.warn(err ? err.stack : res.rows[0].count);
 	});
@@ -28,3 +29,4 @@ process.on('SIGTERM', () => {
 });
 
 dbQuery(queryBlocks);
+dbQuery(queryPgDatabase, [client.database]);
