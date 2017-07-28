@@ -43,8 +43,7 @@ node.dbQuery = function dbQuery(query, params, done) {
 		if (err) {
 			done(err, res);
 		} else {
-			console.warn('returning: ' + res)
-			return res;
+			return done(null, res);
 		}
 	});
 };
