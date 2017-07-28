@@ -1,7 +1,7 @@
 const db = require('./db/index.js');
-var fs = require('fs');
-var path = require('path');
-var program = require('commander');
+const fs = require('fs');
+// const path = require('path');
+const program = require('commander');
 
 // Initalizes paths
 program
@@ -13,22 +13,22 @@ program
 if (program.source) {
 	console.warn(fs.existsSync(program.source));
 } else {
-	console.warn("Source installation required");
+	console.warn('Source installation required');
 	process.exit(2);
 }
 
 if (program.target) {
 	console.warn(fs.existsSync(program.target));
 } else {
-	console.warn("Target installation required");
+	console.warn('Target installation required');
 	process.exit(2);
 }
 
 // Defines count queries
 const queryBlocks = 'SELECT count(1) from blocks';
-const queryPgDatabase = 'select count(datname) from pg_database where datname = $1';
+// const queryPgDatabase = 'select count(datname) from pg_database where datname = $1';
 
-function dbQuery(query, params, callback) {
+function dbQuery(query, params) {
 	return db.query(query, params, (err, res) => {
 		if (err) {
 			console.warn(err);
@@ -39,7 +39,7 @@ function dbQuery(query, params, callback) {
 
 // Checking DB for blocks
 dbQuery(queryBlocks, '');
-setInterval(function () { dbQuery(queryBlocks, '') },10000);
+setInterval(() => { dbQuery(queryBlocks, ''); }, 10000);
 
 
 //  Gracefully close connections and exit
